@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { Anchor, Button, Container, ErrorMessage, Form, GhostButton, Input, LeftOverlayPanel, Overlay, OverlayContainer, Paragraph, RightOverlayPanel, SignInContainer, Title } from '../styles/loginRegister';
+import { Anchor, Button, Container, ErrorMessage, Form, GhostButton, Input, LeftOverlayPanel, Main, Overlay, OverlayContainer, Paragraph, RightOverlayPanel, SignInContainer, Title } from '../styles/loginRegister';
 import { Link } from 'react-router-dom';
 import { auth } from "../utils/firebase"
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
@@ -7,6 +7,8 @@ import { checkValidData } from '../utils/validate';
 import { addUser } from '../utils/userSlice';
 import { useDispatch } from 'react-redux';
 import Header from './Header';
+import '../styles/login.css';
+
 
 
 
@@ -78,46 +80,49 @@ const LoginRegister = () => {
   };
 
   return (
-    <Container>
-      <Header />
-      <SignInContainer signIn={signIn}>
-        <Form onSubmit={(e) => e.preventDefault()}>
-          <Title>{signIn ? "Sign In" : "Sign Up"}</Title>
-          {!signIn && <Input ref={fullname} type='text' placeholder='Name' />}
-          <Input ref={email} type='email' placeholder='Email' />
-          <Input ref={password} type='password' placeholder='Password' />
-          <ErrorMessage>{errorMessage}</ErrorMessage>
-          <Anchor><Link to={"/forget"}>Forgot your password?</Link></Anchor>
-          <Button onClick={handleButtonClick}>{signIn ? "Sign In" : "Sign Up"}</Button>
-        </Form>
-      </SignInContainer>
+    <Main>
+      <Container>
+        <Header />
+        <SignInContainer signIn={signIn}>
+          <Form onSubmit={(e) => e.preventDefault()}>
+            <Title>{signIn ? "Sign In" : "Sign Up"}</Title>
+            {!signIn && <Input ref={fullname} type='text' placeholder='Name' />}
+            <Input ref={email} type='email' placeholder='Email' />
+            <Input ref={password} type='password' placeholder='Password' />
+            <ErrorMessage>{errorMessage}</ErrorMessage>
+            <Anchor><Link to={"/forget"}>Forgot your password?</Link></Anchor>
+            <Button onClick={handleButtonClick}>{signIn ? "Sign In" : "Sign Up"}</Button>
+          </Form>
+        </SignInContainer>
 
-      <OverlayContainer signIn={signIn}>
-        <Overlay signIn={signIn}>
-          <LeftOverlayPanel signIn={signIn}>
-            <Title>Welcome Back!</Title>
-            <Paragraph>
-              To keep connected with us please login with your personal info
-            </Paragraph>
-            <GhostButton onClick={() => SetSignIn(!signIn)}>
-              Sign In
-            </GhostButton>
-          </LeftOverlayPanel>
+        <OverlayContainer signIn={signIn}>
+          <Overlay signIn={signIn}>
+            <LeftOverlayPanel signIn={signIn}>
+              <Title>Welcome Back!</Title>
+              <Paragraph>
+                To keep connected with us please login with your personal info
+              </Paragraph>
+              <GhostButton onClick={() => SetSignIn(!signIn)}>
+                Sign In
+              </GhostButton>
+            </LeftOverlayPanel>
 
-          <RightOverlayPanel signIn={signIn}>
-            <Title>Hello!</Title>
-            <Paragraph>
-              Enter Your personal details and start journey with us
-            </Paragraph>
-            <GhostButton onClick={() => SetSignIn(!signIn)}>
-              Sign Up
-            </GhostButton>
-          </RightOverlayPanel>
+            <RightOverlayPanel signIn={signIn}>
+              <Title>Hello!</Title>
+              <Paragraph>
+                Enter Your personal details and start journey with us
+              </Paragraph>
+              <GhostButton onClick={() => SetSignIn(!signIn)}>
+                Sign Up
+              </GhostButton>
+            </RightOverlayPanel>
 
-        </Overlay>
-      </OverlayContainer>
+          </Overlay>
+        </OverlayContainer>
 
-    </Container>
+      </Container>
+    </Main>
+
   )
 }
 

@@ -1,5 +1,18 @@
 import styled from 'styled-components';
 
+
+
+export const Main = styled.div`
+background: #f6f5f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: sans-serif;
+  height: 100vh;
+  margin: -20px 0 50px;
+`;
+
 export const Container = styled.div`
 background-color: #fff;
 border-radius: 10px;
@@ -10,24 +23,6 @@ width: 678px;
 max-width: 100%;
 min-height: 400px;
 `;
-
-// export const SignUpContainer = styled.div`
-//  position: absolute;
-//  top: 0;
-//  height: 100%;
-//  transition: all 0.6s ease-in-out;
-//  left: 0;
-//  width: 50%;
-//  opacity: 0;
-//  z-index: 1;
-//  ${props => props.signIn !== true ? `
-//    transform: translateX(100%);
-//    opacity: 1;
-//    z-index: 5;
-//  `
-//     : null}
-// `;
-
 
 export const SignInContainer = styled.div`
 position: absolute;
@@ -162,7 +157,7 @@ export const RightOverlayPanel = styled(OverlayPanel)`
 `;
 
 export const Paragraph = styled.p`
-font-size: 14px;
+  font-size: 14px;
   font-weight: 100;
   line-height: 20px;
   letter-spacing: 0.5px;
@@ -176,4 +171,12 @@ color: red;
   line-height: 20px;
   letter-spacing: 0.5px;
   margin: 20px 0 10px
+`;
+
+export const HeaderStyle = styled.p`
+  background: #000;
+  color: #fff;
+  padding: 30px;
+  align-items: start;
+  text-align: center;
 `;

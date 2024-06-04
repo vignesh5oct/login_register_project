@@ -1,36 +1,60 @@
-import React, { useState } from 'react'
-import { Anchor, Button, Container, ForgetContainer, Form,  Input, Overlay, OverlayContainer, Paragraph, RightOverlayPanel, Title } from '../styles/loginRegister'
+import React, { useRef, useState } from 'react'
+import { Anchor, Button, Container, ErrorMessage, ForgetContainer, Form, Input, Main, Overlay, OverlayContainer, Paragraph, RightOverlayPanel, Title } from '../styles/loginRegister'
 import { Link } from 'react-router-dom';
+import { checkValidData } from '../utils/validate';
+import { auth } from "../utils/firebase"
+import { sendPasswordResetEmail } from 'firebase/auth';
 
 const Forget = () => {
   const [signIn] = useState(true);
+  const email = useRef(null);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+
+  const handleReset = () => {
+    // const message = checkValidData(email.current.value);
+    // setErrorMessage(message);
+    console.log(email.current.value)
+    sendPasswordResetEmail(auth, email.current.value)
+      .then(() => {
+        alert("Email is sent")
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        setErrorMessage(errorMessage);
+      });
+  }
 
   return (
-    <Container>
-      <ForgetContainer>
-        <Form>
-          <Title>Password Reset</Title>
-          <Input type='text' placeholder='Name' />
-          <Input type='email' placeholder='Email' />
-          <Button>Reset</Button>
-        </Form>
-      </ForgetContainer>
-      <OverlayContainer signIn={signIn}>
-        <Overlay signIn={signIn}>
-          <RightOverlayPanel signIn={signIn}>
-            <Title>Already User!</Title>
-            <Paragraph>
-              Please login with your personal info in Login Page
-            </Paragraph>
-            <Anchor>
-              <Link to={"/"}>Login / Register</Link>
-            </Anchor>
-          </RightOverlayPanel>
+    <Main>
+      <Container>
+        <ForgetContainer>
+          <Form onSubmit={(e) => e.preventDefault()}>
+            <Title>Password Reset</Title>
+            <Input ref={email} type='email' placeholder='Email' />
+            <ErrorMessage>{errorMessage}</ErrorMessage>
 
-        </Overlay>
-      </OverlayContainer>
+            <Button onClick={handleReset}>Reset</Button>
+          </Form>
+        </ForgetContainer>
+        <OverlayContainer signIn={signIn}>
+          <Overlay signIn={signIn}>
+            <RightOverlayPanel signIn={signIn}>
+              <Title>Already User!</Title>
+              <Paragraph>
+                Please login with your personal info in Login Page
+              </Paragraph>
+              <Anchor>
+                <Link to={"/"}>Login / Register</Link>
+              </Anchor>
+            </RightOverlayPanel>
 
-    </Container>
+          </Overlay>
+        </OverlayContainer>
+
+      </Container>
+    </Main>
+
   )
 }
 

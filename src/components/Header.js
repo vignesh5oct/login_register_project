@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { auth } from "../utils/firebase"
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUser, removeUser } from '../utils/userSlice';
-import { Button } from '../styles/loginRegister';
+import { Anchor, AnchorButton, AnchorLink, Button, HeaderStyle, Items } from '../styles/header';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -42,8 +42,21 @@ const Header = () => {
 
   return (
     <>
-      {user && <Button onClick={handleSignOut}>Sign out</Button>}
+      {user &&
+        <HeaderStyle>
+          <Items>
+            <AnchorLink><Link to={"/"}>Home</Link></AnchorLink>
+          </Items>
+          <Items>
+            <Anchor>{user?.displayName}</Anchor>
+            <Anchor>{user?.email}</Anchor>
+            <Button onClick={handleSignOut}>Sign out</Button>
+          </Items>
+        </HeaderStyle>
+      }
     </>
+
+
   )
 }
 
