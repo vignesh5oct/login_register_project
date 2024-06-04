@@ -1,36 +1,99 @@
-import React, { useState } from 'react'
-import { Anchor, Button, Container, Form, GhostButton, Input, LeftOverlayPanel, Overlay, OverlayContainer, Paragraph, RightOverlayPanel, SignInContainer, SignUpContainer, Title } from '../styles/loginRegister';
+import React, { useRef, useState } from 'react'
+import { Anchor, Button, Container, ErrorMessage, Form, GhostButton, Input, LeftOverlayPanel, Overlay, OverlayContainer, Paragraph, RightOverlayPanel, SignInContainer, Title } from '../styles/loginRegister';
 import { Link } from 'react-router-dom';
+import { auth } from "../utils/firebase"
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { checkValidData } from '../utils/validate';
+import { addUser } from '../utils/userSlice';
+import { useDispatch } from 'react-redux';
+import Header from './Header';
+
 
 
 const LoginRegister = () => {
   const [signIn, SetSignIn] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const dispatch = useDispatch();
+
+  const fullname = useRef(null);
+  const email = useRef(null);
+  const password = useRef(null);
+
+  const handleButtonClick = () => {
+    if (!signIn) {
+      const message = checkValidData(email.current.value, password.current.value, fullname.current.value);
+      setErrorMessage(message);
+
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          updateProfile(user, {
+            displayName: fullname.current.value
+          })
+            .then(() => {
+              const { uid, email, displayName } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName
+                })
+              );
+            })
+            .catch((error) => {
+              setErrorMessage(message);
+            });
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + "-" + errorMessage);
+        });
+
+    } else {
+      const message = checkValidData(email.current.value, password.current.value);
+      // console.log(email.current.value, password.current.value)
+      setErrorMessage(message);
+
+      signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+        .then((userCredential) => {
+          // Signed in 
+          const user = userCredential.user;
+          console.log(user)
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + "-" + errorMessage);
+
+        });
+    }
+
+  };
 
   return (
     <Container>
-      <SignUpContainer signIn={signIn}>
-        <Form>
-          <Title>Create Account</Title>
-          <Input type='text' placeholder='Name' />
-          <Input type='email' placeholder='Email' />
-          <Input type='password' placeholder='Password' />
-          <Button>Sign Up</Button>
-        </Form>
-      </SignUpContainer>
-
+      <Header />
       <SignInContainer signIn={signIn}>
-        <Form>
-          <Title>Sign in</Title>
-          <Input type='email' placeholder='Email' />
-          <Input type='password' placeholder='Password' />
+        <Form onSubmit={(e) => e.preventDefault()}>
+          <Title>{signIn ? "Sign In" : "Sign Up"}</Title>
+          {!signIn && <Input ref={fullname} type='text' placeholder='Name' />}
+          <Input ref={email} type='email' placeholder='Email' />
+          <Input ref={password} type='password' placeholder='Password' />
+          <ErrorMessage>{errorMessage}</ErrorMessage>
           <Anchor><Link to={"/forget"}>Forgot your password?</Link></Anchor>
-          <Button>Sign In</Button>
+          <Button onClick={handleButtonClick}>{signIn ? "Sign In" : "Sign Up"}</Button>
         </Form>
       </SignInContainer>
 
       <OverlayContainer signIn={signIn}>
         <Overlay signIn={signIn}>
-
           <LeftOverlayPanel signIn={signIn}>
             <Title>Welcome Back!</Title>
             <Paragraph>

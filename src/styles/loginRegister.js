@@ -11,22 +11,22 @@ max-width: 100%;
 min-height: 400px;
 `;
 
-export const SignUpContainer = styled.div`
- position: absolute;
- top: 0;
- height: 100%;
- transition: all 0.6s ease-in-out;
- left: 0;
- width: 50%;
- opacity: 0;
- z-index: 1;
- ${props => props.signIn !== true ? `
-   transform: translateX(100%);
-   opacity: 1;
-   z-index: 5;
- `
-    : null}
-`;
+// export const SignUpContainer = styled.div`
+//  position: absolute;
+//  top: 0;
+//  height: 100%;
+//  transition: all 0.6s ease-in-out;
+//  left: 0;
+//  width: 50%;
+//  opacity: 0;
+//  z-index: 1;
+//  ${props => props.signIn !== true ? `
+//    transform: translateX(100%);
+//    opacity: 1;
+//    z-index: 5;
+//  `
+//     : null}
+// `;
 
 
 export const SignInContainer = styled.div`
@@ -167,4 +167,13 @@ font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.5px;
   margin: 20px 0 30px
+`;
+
+export const ErrorMessage = styled.p`
+font-size: 14px;
+color: red;
+  font-weight: 100;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  margin: 20px 0 10px
 `;
