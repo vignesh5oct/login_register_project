@@ -16,7 +16,7 @@
   opacity: 1;
 }
 .logo {
-  padding:70px;
+  margin-left: 25px;
   top: 67px;
   left: 235px;
   width: 89px;
@@ -28,12 +28,15 @@
   color: #101010;
   opacity: 1;
 }
+.search{
+  display: flex;
+  
+}
 .searchBox {
   margin: 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  top: 40px;
   left: 490px;
   width: 620px;
   height: 80px;
@@ -42,6 +45,7 @@
   background: #ffffff 0% 0% no-repeat padding-box;
   border-radius: 10px;
   opacity: 1;
+  
 }
 
 .searchBar {

@@ -9,7 +9,7 @@ const TopBar = () => {
   return (
     <div className='topbar'>
       <div className='logoBox'>
-        <span className='logo'>LOGO</span>
+        <p className='logo'>LOGO</p>
       </div>
       <div className='searchBox'>
         <div className='search'>
@@ -20,7 +20,6 @@ const TopBar = () => {
           <img className='filterIcon' alt='' src={filter} />
           <p className=''>Filter</p>
         </div>
-
       </div>
 
       <div className='seller'>

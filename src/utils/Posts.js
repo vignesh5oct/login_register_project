@@ -13,12 +13,18 @@ import artist3desc from "../assests/pexels-pixabay-164455@2x.png"
 import artist4desc from "../assests/pexels-steve-johnson-1269968@2x.png"
 import artist5desc from "../assests/pexels-fiona-art-5022849@2x.png"
 
+import stars from "../assests/star@2x.png"
+import work1 from "../assests/Image 40@2x.png"
+import work2 from "../assests/Image 39@2x.png"
+import work3 from "../assests/pexels-max-vakhtbovych-6782342@2x.png"
+import work4 from "../assests/pexels-pixabay-164455@2x.png"
+
 
 export const posts = [
   {
     id: 1,
     name: "Lara Leones",
-    titleId:"@thewallart",
+    titleId: "@thewallart",
     userId: 1,
     profilePic: author1,
     desc: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. Read More",
@@ -27,7 +33,7 @@ export const posts = [
   {
     id: 2,
     name: "Thomas J.",
-    titleId:"@thecustomcreater",
+    titleId: "@thecustomcreater",
     userId: 2,
     profilePic: author2,
     desc: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. Read More",
@@ -40,8 +46,7 @@ export const artists = [
   {
     id: 1,
     name: "Thomas Edward",
-    titleId:"@thewildwithyou",
-    userId: 1,
+    titleId: "@thewildwithyou",
     profilePic: artist1,
     desc: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. Read More",
     img: artist1desc,
@@ -49,7 +54,7 @@ export const artists = [
   {
     id: 2,
     name: "Chris Doe",
-    titleId:"@thewildwithyou",
+    titleId: "@thewildwithyou",
     profilePic: artist2,
     desc: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. Read More",
     img: artist2desc,
@@ -57,7 +62,7 @@ export const artists = [
   {
     id: 3,
     name: "Emilie Jones",
-    titleId:"@thewildwithyou",
+    titleId: "@thewildwithyou",
     profilePic: artist3,
     desc: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. Read More",
     img: artist3desc,
@@ -65,7 +70,7 @@ export const artists = [
   {
     id: 4,
     name: "Jessica Williams",
-    titleId:"@thewildwithyou",
+    titleId: "@thewildwithyou",
     profilePic: artist4,
     desc: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. Read More",
     img: artist4desc,
@@ -73,10 +78,42 @@ export const artists = [
   {
     id: 5,
     name: "Williams",
-    titleId:"@thewildwithyou",
+    titleId: "@thewildwithyou",
     profilePic: artist3,
     desc: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. Read More",
     img: artist5desc,
+  },
+
+];
+
+export const work = [
+  {
+    id: 1,
+    name: "Modern Wall Decor Framed Painting",
+    rupee: "$199.99",
+    img: work4,
+    stars: stars,
+  },
+  {
+    id: 2,
+    name: "Modern Wall Framed Painting",
+    rupee: "$199.99",
+    img: work1,
+    stars: stars,
+  },
+  {
+    id: 3,
+    name: "Modern Wall Decor Painting",
+    rupee: "$199.99",
+    img: work2,
+    stars: stars,
+  },
+  {
+    id: 3,
+    name: "Modern Wall Decor Painting",
+    rupee: "$199.99",
+    img: work3,
+    stars: stars,
   },
 
 ];
