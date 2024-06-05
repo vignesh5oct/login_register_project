@@ -5,7 +5,6 @@ import coversion from "../assests/message.png"
 import wallet from "../assests/message@2x.png"
 import subscription from "../assests/setting.png"
 import profile from "../assests/profile.png"
-import logout from "../assests/logout.png"
 
 
 export const menuItems = [

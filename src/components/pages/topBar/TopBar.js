@@ -14,7 +14,7 @@ const TopBar = () => {
       <div className='searchBox'>
         <div className='search'>
           <img alt='' className='searchIcon' src={search} />
-          <input className='searchBar' placeholder='Search here...'/>
+          <input className='searchBar' placeholder='Search here...' />
         </div>
         <div className='filter'>
           <img className='filterIcon' alt='' src={filter} />

@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-
-
 export const Main = styled.div`
 background: #f6f5f7;
   display: flex;
