@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { Anchor, Button, Container, ErrorMessage, ForgetContainer, Form, Input, Main, Overlay, OverlayContainer, Paragraph, RightOverlayPanel, Title } from '../styles/loginRegister'
 import { Link } from 'react-router-dom';
-import { checkValidData } from '../utils/validate';
 import { auth } from "../utils/firebase"
 import { sendPasswordResetEmail } from 'firebase/auth';
 
@@ -12,8 +11,6 @@ const Forget = () => {
 
 
   const handleReset = () => {
-    // const message = checkValidData(email.current.value);
-    // setErrorMessage(message);
     console.log(email.current.value)
     sendPasswordResetEmail(auth, email.current.value)
       .then(() => {

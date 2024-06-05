@@ -6,8 +6,8 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfi
 import { checkValidData } from '../utils/validate';
 import { addUser } from '../utils/userSlice';
 import { useDispatch } from 'react-redux';
-import Header from './Header';
 import '../styles/login.css';
+import SignInOutAuth from './SignInOutAuth';
 
 
 
@@ -59,15 +59,12 @@ const LoginRegister = () => {
 
     } else {
       const message = checkValidData(email.current.value, password.current.value);
-      // console.log(email.current.value, password.current.value)
       setErrorMessage(message);
 
       signInWithEmailAndPassword(auth, email.current.value, password.current.value)
         .then((userCredential) => {
-          // Signed in 
           const user = userCredential.user;
           console.log(user)
-          // ...
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -82,7 +79,7 @@ const LoginRegister = () => {
   return (
     <Main>
       <Container>
-        <Header />
+        <SignInOutAuth />
         <SignInContainer signIn={signIn}>
           <Form onSubmit={(e) => e.preventDefault()}>
             <Title>{signIn ? "Sign In" : "Sign Up"}</Title>

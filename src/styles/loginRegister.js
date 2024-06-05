@@ -173,10 +173,3 @@ color: red;
   margin: 20px 0 10px
 `;
 
-export const HeaderStyle = styled.p`
-  background: #000;
-  color: #fff;
-  padding: 30px;
-  align-items: start;
-  text-align: center;
-`;
