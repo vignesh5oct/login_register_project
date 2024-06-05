@@ -2,7 +2,7 @@ import home from "../assests/home.png"
 import notification from "../assests/notification.png"
 import shop from "../assests/heart.png"
 import coversion from "../assests/message.png"
-import wallet from "../assests/message@2x.png"
+import wallet from "../assests/message.png"
 import subscription from "../assests/setting.png"
 import profile from "../assests/profile.png"
 
